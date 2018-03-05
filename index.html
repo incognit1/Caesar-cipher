@@ -5,118 +5,27 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Шифр Цезаря</title>
-    <style>body { text-align: center}
-    input {
-        margin: 20px;
-    }
-    </style>
+    <title>Ceasars Cipher Encryptor</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+
+
 </head>
 <body>
-<h1>Кодирование методом Цезаря</h1>
-<p>Введите сообщение</p>
-<textarea name="text" id="output" cols="30" rows="10">hello</textarea>
+<h1>Ceasars Cipher Encryptor</h1>
+<p>Enter Your Secret Message:</p>
+<textarea name="text" id="output" cols="30" rows="10" placeholder="Enter Your Secret Message">Author: Vlad Leshchenko</textarea>
 
-<p>Введите ключ</p>
+<p>Key:</p>
 <input type="text" id="key" value="3">
 <nav>
-    <button id="encode">Зашифровать</button>
-    <button id="decode">Расшифровать</button>
-    <button id="open">Открыть</button>
-    <button id="save">Сохранить</button>
-    <button id="print">Печать</button>
+    <button id="encode">Encrypt</button>
+    <button id="decode">Decrypt</button>
+    <button id="open">Open</button>
+    <button id="save">Save</button>
+    <button id="print">Print</button>
+    <input type="file" id="file" accept=".txt">
 </nav>
-<script>
-    var lang = {
-        rus: 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя',
-        eng: 'abcdefghijklmnopqrstuvwxyz'
-    },
-        other = '-=~\"\'#$%&*^:<>?/!{(|)}.1234567890\, ';
-
-    var output = get('#output'),
-        keyElem = get('#key'),
-        encodeBtn = get('#encode'),
-        decodeBtn = get('#decode'),
-        openBtn = get('#open'),
-        saveBtn = get('#save'),
-        printBtn = get('#print'),
-        currentLang,
-        shiftLang,
-        key,
-        text;
-
-
-    encodeBtn.addEventListener('click', function() {
-        encode();
-    }, false);
-
-    decodeBtn.addEventListener('click', function() {
-        decode();
-    }, false);
-
-
-    function encode() {
-        var cipherText = '';
-        key = keyElem.value;
-        text = output.value;
-
-
-
-        //define the alphabet
-        lang: for (var alp in lang) {
-            for (var k = 0; k < text.length; k++) {
-                if (!~lang[alp].indexOf(text[k]) && !~other.indexOf(text[k])) {
-                    continue lang;
-                }
-
-                else if(!~other.indexOf(text[k])){
-                    currentLang = lang[alp];
-                }
-
-            }
-        }
-
-        //shift the alphabet
-        shiftLang = currentLang.slice(key);
-        shiftLang += currentLang.slice(0, key);
-
-        shiftLang += other;
-        currentLang += other;
-
-        //alert('Текущий алфавит: ' + currentLang + '\n' + 'Сдвинутый алфавит: ' + shiftLang + 'Ключ: ' + key);
-
-        //encrypt the alphabet
-        for(var i = 0; i < text.length; i++) {
-            if (shiftLang[currentLang.indexOf(text[i])]) {
-                cipherText += shiftLang[currentLang.indexOf(text[i])];
-            }
-
-            else {
-                cipherText += text[i];
-            }
-        }
-        output.value = cipherText;
-
-    }
-
-    function decode() {
-        text = output.value;
-        var decipherText = '';
-        for(var i = 0; i < text.length; i++) {
-            if (shiftLang[currentLang.indexOf(text[i])]) {
-                decipherText += currentLang[shiftLang.indexOf(text[i])];
-            }
-
-            else {
-                decipherText += text[i];
-            }
-        }
-        output.value = decipherText;
-    }
-
-    function get(selector) {
-        return document.querySelector(selector);
-    }
-</script>
+<script src="main.js"></script>
 </body>
 </html>
