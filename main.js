@@ -12,11 +12,25 @@ var output = get('#output'),
     saveBtn = get('#save'),
     printBtn = get('#print'),
     openInput = get('#file'),
+    keyRange = get('#rangeKey'),
+    shiftP = get('#shift'),
+    unshiftP = get('#unshift'),
     currentLang,
+    upper,
+    upperShift,
     shiftLang,
     key,
     text;
 
+keyRange.addEventListener('input', function (e) {
+    keyElem.innerHTML = keyRange.value;
+
+    if(check()) return;
+    unshiftP.innerHTML = upper;
+    shiftP.innerHTML = upperShift;
+    unshiftP.style.display = 'block';
+    shiftP.style.display = 'block';
+}, false);
 
 encodeBtn.addEventListener('click', function() {
     encode();
@@ -48,39 +62,17 @@ saveBtn.addEventListener('click', function() {
 }, false);
 
 printBtn.addEventListener('click', function () {
+    if (!output.value) return;
     window.print();
 }, false);
 
 function encode() {
     var cipherText = '';
-    key = keyElem.value;
-    text = output.value;
 
-    if(!text) { alert('No encryption text'); return }
-
-    //define the alphabet
-    lang: for (var alp in lang) {
-        for (var k = 0; k < text.length; k++) {
-            if ( !~lang[alp].indexOf(text[k]) && !~other.indexOf(text[k]) ) {
-                continue lang;
-            } else if( !~other.indexOf(text[k]) ){
-                currentLang = lang[alp];
-            }
-        }
-    }
-
-    //shift the alphabet
-    shiftLang = currentLang.slice(key);
-    shiftLang += currentLang.slice(0, key);
-
-    if(key > currentLang.length/2 - 1 || key < 0) {
-        alert('The key must be < ' + currentLang.length/2 + ' and > 0.' + '\nFix it and try again.');
+    if (check()) {
+        alert('Enter the text for encryption');
         return;
     }
-
-    shiftLang += other;
-    currentLang += other;
-
     //encrypt the alphabet
         for(var i = 0; i < text.length; i++) {
             if (shiftLang[currentLang.indexOf(text[i])]) {
@@ -94,32 +86,9 @@ function encode() {
 
 function decode() {
     var decipherText = '';
-    key = keyElem.value;
-    text = output.value;
-    if(!text) { alert('No encryption text'); return }
-
-    if (!currentLang) {
-        lang: for (var alp in lang) {
-            for (var k = 0; k < text.length; k++) {
-                if ( !~lang[alp].indexOf(text[k]) && !~other.indexOf(text[k]) ) {
-                    continue lang;
-                } else if( !~other.indexOf(text[k]) ){
-                    currentLang = lang[alp];
-                }
-            }
-        }
-
-        if(key > currentLang.length/2 - 1 || key < 0) {
-            alert('The key must be < ' + currentLang.length/2 + ' and > 0.' + '\nFix it and try again.');
-            return;
-        }
-
-        //shift the alphabet
-        shiftLang = currentLang.slice(key);
-        shiftLang += currentLang.slice(0, key);
-
-        shiftLang += other;
-        currentLang += other;
+    if (check()) {
+        alert('Enter the text for decryption');
+        return;
     }
 
     for(var i = 0; i < text.length; i++) {
@@ -134,6 +103,7 @@ function decode() {
 
 // Function to download data to a file
 function download(data, filename) {
+    if (!output.value) return;
     var file = new Blob([data]);
     if (window.navigator.msSaveOrOpenBlob) // IE10+
         window.navigator.msSaveOrOpenBlob(file, filename);
@@ -149,6 +119,42 @@ function download(data, filename) {
     }
 }
 
+function check() {
+    if (!output.value) {
+
+        return true;
+    }
+    var lower;
+
+    key = keyRange.value;
+    text = output.value;
+
+    //define the alphabet
+    lang: for (var alp in lang) {
+        for (var k = 0; k < text.length; k++) {
+            if ( !~lang[alp].indexOf(text[k]) && !~other.indexOf(text[k]) ) {
+                continue lang;
+            } else if( !~other.indexOf(text[k]) ){
+                currentLang = lang[alp];
+            }
+        }
+    }
+
+    keyRange.setAttribute('max', currentLang.length/2-1);
+
+    //shift the alphabet
+    lower = currentLang.substring(0, currentLang.length/2);
+    upper = currentLang.substring(currentLang.length/2, currentLang.length);
+
+    upperShift = upper.slice(key) + upper.slice(0, key);
+
+    shiftLang = lower.slice(key);
+    shiftLang += lower.slice(0, key) + upperShift;
+
+    shiftLang += other;
+    currentLang += other;
+    return false;
+}
 
 function get(selector) {
     return document.querySelector(selector);
