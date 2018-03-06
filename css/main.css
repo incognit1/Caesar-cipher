@@ -37,7 +37,6 @@ h1 {
 }
 
 nav {
-    background: #333;
     width: 63%;
     margin: 20px auto;
     -webkit-border-radius: 5px;
@@ -46,7 +45,7 @@ nav {
 }
 
 button {
-    background: transparent;
+    background: #16a085;
     border: 0px;
     padding: 10px;
     border-radius: 3px;
@@ -83,13 +82,6 @@ button:hover {
     display: none;
     animation: anim 1s ease;
 }
-
-input[type=range]:disabled {
-}
-
-input[type=range]:disabled::-webkit-slider-thumb {
-}
-
 
 input[type=range] {
     box-sizing: border-box;

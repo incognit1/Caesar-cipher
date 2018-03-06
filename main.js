@@ -25,9 +25,7 @@ var output = get('#output'),
 keyRange.addEventListener('input', function (e) {
     keyElem.innerHTML = keyRange.value;
 
-    if(check()) return;
-    unshiftP.innerHTML = upper;
-    shiftP.innerHTML = upperShift;
+    if(checkAlph()) return;
     unshiftP.style.display = 'block';
     shiftP.style.display = 'block';
 }, false);
@@ -45,7 +43,6 @@ openBtn.addEventListener('click', function () {
 }, false);
 
 openInput.addEventListener('change', function (e) {
-    console.log(e.target.files);
     var file = e.target.files[0],
         reader = new FileReader();
 
@@ -69,7 +66,7 @@ printBtn.addEventListener('click', function () {
 function encode() {
     var cipherText = '';
 
-    if (check()) {
+    if (checkAlph()) {
         alert('Enter the text for encryption');
         return;
     }
@@ -86,7 +83,7 @@ function encode() {
 
 function decode() {
     var decipherText = '';
-    if (check()) {
+    if (checkAlph()) {
         alert('Enter the text for decryption');
         return;
     }
@@ -119,7 +116,7 @@ function download(data, filename) {
     }
 }
 
-function check() {
+function checkAlph() {
     if (!output.value) {
 
         return true;
@@ -130,10 +127,10 @@ function check() {
     text = output.value;
 
     //define the alphabet
-    lang: for (var alp in lang) {
+    label: for (var alp in lang) {
         for (var k = 0; k < text.length; k++) {
             if ( !~lang[alp].indexOf(text[k]) && !~other.indexOf(text[k]) ) {
-                continue lang;
+                continue label;
             } else if( !~other.indexOf(text[k]) ){
                 currentLang = lang[alp];
             }
@@ -147,6 +144,9 @@ function check() {
     upper = currentLang.substring(currentLang.length/2, currentLang.length);
 
     upperShift = upper.slice(key) + upper.slice(0, key);
+
+    unshiftP.innerHTML = upper;
+    shiftP.innerHTML = upperShift;
 
     shiftLang = lower.slice(key);
     shiftLang += lower.slice(0, key) + upperShift;
