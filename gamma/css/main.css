@@ -1,0 +1,159 @@
+body {
+    text-align: center;
+    background: url(../bg2.jpg);
+    color: #fff;
+    font-family: Arial, Tahoma;
+    padding: 15px;
+}
+input {
+    margin: 15px;
+    padding: 13px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+input[type="file"] {
+    display: none;
+}
+
+h1 {
+    text-shadow: 2px 2px 2px #16a085;
+}
+
+
+
+#main {
+    position: relative;
+    z-index: 2;
+}
+
+#wrapper {
+    height: 75px;
+    overflow: hidden;
+}
+
+#output {
+    background: #ffffff;
+    font-size: 15px;
+    padding: 25px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+nav {
+    width: auto;
+    margin: 20px auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+button {
+    background: #16a085;
+    border: 0px;
+    padding: 10px;
+    border-radius: 3px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #222222;
+    transition: .5s;
+}
+
+#darkness {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #0000007d;
+    z-index: 0;
+}
+
+
+
+
+#main {
+    position: relative;
+    z-index: 2;
+    background: #333;
+    padding: 25px;
+    width: fit-content;
+    margin: 70px auto 0px auto;
+}
+
+#main > label {
+    cursor: pointer;
+    background: #333;
+    padding: 8px 15px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.motto {
+    animation: anim .4s ease;
+}
+
+.show {
+    display: block;
+}
+
+label > input[type='radio']:checked {
+    font-size: 20px;
+    background: #16a085;
+    display: block;
+    margin: 5px auto;
+}
+
+input[type='radio'] {
+    display: none;
+}
+
+input[type='number'] {
+    width: 50px;
+    height: 21px;
+    background: white;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 5px #333;
+    padding: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+p {
+    margin: 2px;
+}
+
+
+
+@keyframes anim {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+#lab {
+    position: relative;
+    z-index: 3;
+}
+
+#lab a {
+    color: #ccbdbd;
+    padding: 10px;
+}

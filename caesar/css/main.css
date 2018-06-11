@@ -1,0 +1,223 @@
+body {
+    text-align: center;
+    background: url(../bg2.jpg);
+    color: #fff;
+    font-family: Arial, Tahoma;
+    padding: 15px;
+}
+input {
+    margin: 20px;
+}
+input[type="file"] {
+    display: none;
+}
+
+h1 {
+    text-shadow: 2px 2px 2px #16a085;
+}
+
+#main {
+    position: relative;
+    z-index: 2;
+}
+
+#wrapper {
+    height: 75px;
+    overflow: hidden;
+}
+
+#output {
+    background: #ffffff;
+    font-size: 15px;
+    padding: 25px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    color: #444;
+}
+
+nav {
+    width: 63%;
+    margin: 20px auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+button {
+    background: #16a085;
+    border: 0px;
+    padding: 10px;
+    border-radius: 3px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #222222;
+    transition: .5s;
+}
+
+#darkness {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #0000007d;
+    z-index: 0;
+}
+
+#shift, #unshift {
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 16px;
+    line-height: 30px;
+    font-family: monospace;
+    padding: 0;
+    margin: 5px;
+    display: none;
+    animation: anim 1s ease;
+}
+
+input[type=range] {
+    box-sizing: border-box;
+    font-size: 12px;
+    line-height: 1;
+    height: 2em;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    width: 200px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]::-ms-track {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 2em;
+    height: 2em;
+    margin-top: 0;
+    background-color: #16a085;
+    border-radius: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+    width: 2em;
+    height: 2em;
+    margin-top: 0;
+    background-color: #16a085;
+    border-radius: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+input[type=range]::-ms-thumb {
+    width: 2em;
+    height: 2em;
+    margin-top: 0;
+    background-color: #16a085;
+    border-radius: 1em;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+input[type=range]:hover::-webkit-slider-thumb {
+    border-color: rgba(255, 255, 255, 0.7);
+}
+input[type=range]:hover::-moz-range-thumb {
+    border-color: rgba(255, 255, 255, 0.7);
+}
+input[type=range]:hover::-ms-thumb {
+    border-color: rgba(255, 255, 255, 0.7);
+}
+input[type=range]:active::-webkit-slider-thumb {
+    border-color: #ffffff;
+}
+input[type=range]:active::-moz-range-thumb {
+    border-color: #ffffff;
+}
+input[type=range]:active::-ms-thumb {
+    border-color: #ffffff;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    cursor: pointer;
+    height: 1em;
+    border-bottom: 2px solid #fff;
+    background-color: transparent;
+
+}
+input[type=range]::-moz-range-track {
+    width: 100%;
+    cursor: pointer;
+    height: 1em;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+}
+input[type=range]::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+
+#key {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    color: #fff;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 3px;
+    background: #16a085;
+    padding: 5px 10px;
+    margin-left: 8px;
+    border: none;
+}
+
+#key:after {
+    position: absolute;
+    top: 8px;
+    left: -7px;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-right: 7px solid #16a085;
+    border-bottom: 7px solid transparent;
+    content: '';
+}
+
+
+#lab {
+    position: relative;
+    z-index: 2;
+}
+
+#lab a {
+    color: #ccbdbd;
+    padding: 10px;
+}
+
+@keyframes anim {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

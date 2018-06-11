@@ -1,8 +1,4 @@
-var lang = {
-        rus: 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
-        eng: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    },
-    other = '-=~\"\'#$%&*^:<>?/!{(|)}.1234567890\, ';
+var alph = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-=~\"\'#$%&*^:<>?/!{(|)}.1234567890\,';
 
 var output = get('#output'),
     keyElem = get('#key'),
@@ -12,23 +8,10 @@ var output = get('#output'),
     saveBtn = get('#save'),
     printBtn = get('#print'),
     openInput = get('#file'),
-    keyRange = get('#rangeKey'),
-    shiftP = get('#shift'),
-    unshiftP = get('#unshift'),
-    currentLang,
-    upper,
-    upperShift,
-    shiftLang,
+    shiftAlph,
     key,
     text;
 
-keyRange.addEventListener('input', function (e) {
-    keyElem.innerHTML = keyRange.value;
-
-    if(checkAlph()) return;
-    unshiftP.style.display = 'block';
-    shiftP.style.display = 'block';
-}, false);
 
 encodeBtn.addEventListener('click', function() {
     encode();
@@ -72,8 +55,8 @@ function encode() {
     }
     //encrypt the alphabet
         for(var i = 0; i < text.length; i++) {
-            if (shiftLang[currentLang.indexOf(text[i])]) {
-                cipherText += shiftLang[currentLang.indexOf(text[i])];
+            if (shiftAlph[alph.indexOf(text[i])]) {
+                cipherText += shiftAlph[alph.indexOf(text[i])];
             } else {
                 cipherText += text[i];
             }
@@ -89,8 +72,8 @@ function decode() {
     }
 
     for(var i = 0; i < text.length; i++) {
-        if (shiftLang[currentLang.indexOf(text[i])]) {
-            decipherText += currentLang[shiftLang.indexOf(text[i])];
+        if (shiftAlph[alph.indexOf(text[i])]) {
+            decipherText += alph[shiftAlph.indexOf(text[i])];
         } else {
             decipherText += text[i];
         }
@@ -117,42 +100,17 @@ function download(data, filename) {
 }
 
 function checkAlph() {
-    if (!output.value) {
-
-        return true;
-    }
+    if (!output.value) { return true; }
     var lower;
 
-    key = keyRange.value;
+    key = keyElem.value;
     text = output.value;
 
-    //define the alphabet
-    label: for (var alp in lang) {
-        for (var k = 0; k < text.length; k++) {
-            if ( !~lang[alp].indexOf(text[k]) && !~other.indexOf(text[k]) ) {
-                continue label;
-            } else if( !~other.indexOf(text[k]) ){
-                currentLang = lang[alp];
-            }
-        }
-    }
-
-    keyRange.setAttribute('max', currentLang.length/2-1);
+    key = key % alph.length;
 
     //shift the alphabet
-    lower = currentLang.substring(0, currentLang.length/2);
-    upper = currentLang.substring(currentLang.length/2, currentLang.length);
+    shiftAlph = alph.slice(key) + alph.slice(0, key);
 
-    upperShift = upper.slice(key) + upper.slice(0, key);
-
-    unshiftP.innerHTML = upper;
-    shiftP.innerHTML = upperShift;
-
-    shiftLang = lower.slice(key);
-    shiftLang += lower.slice(0, key) + upperShift;
-
-    shiftLang += other;
-    currentLang += other;
     return false;
 }
 

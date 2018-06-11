@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ceasars Cipher Encryptor</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/print.css">
+
+
+</head>
+
+<body>
+    <div id="lab">
+        <a href="../book/index.html">Book Cipher</a>
+        <a href="../caesar/">Caesar Cipher</a>
+        <a href="../gamma/">Gamma Cipher</a>
+        <a href="../knapsack/">Knapsack Cipher</a>
+        <a href="../trisemus/">Tricemus Cipher</a>
+    </div>
+    <div id="main">
+        <h1>Trisemus Cipher Encryptor</h1>
+        <textarea autofocus name="text" id="output" cols="60" rows="4" placeholder="Enter Your Secret Message"></textarea>
+
+        <p>Shift methods:</p>
+        <label>Linear
+            <input type="radio" name='method' value="linear">
+        </label>
+        <label>Non-Linear
+            <input type="radio" name='method' value="non-linear">
+        </label>
+        <label>Motto
+            <input type="radio" name='method' value="motto">
+        </label>
+        <div class="linear">
+            <p>k = A p + B</p>
+            <label>Enter A:
+                <input type="number" id='linear-A' value='0'>
+            </label>
+            <label>Enter B:
+                <input type="number" id='linear-B' value='0'>
+            </label>
+        </div>
+        <div class="non-linear">
+            <p> k = A p 2 + B p + C </p>
+            <label>Enter A:
+                <input type="number" id='non-linear-A' value='0'>
+            </label>
+            <label>Enter B:
+                <input type="number" id='non-linear-B' value='0'>
+            </label>
+            <label>Enter C:
+                <input type="number" id='non-linear-C' value='0'>
+            </label>
+        </div>
+        <div class="motto">
+            <p>Enter Motto:</p>
+            <input type="text" id='motto-Text'>
+        </div>
+
+        <nav>
+            <button id="encode">Encrypt</button>
+            <button id="decode">Decrypt</button>
+            <button id="open">Open</button>
+            <button id="save">Save</button>
+            <button id="print">Print</button>
+            <input type="file" id="file" accept=".txt">
+        </nav>
+    </div>
+    <script src="main.js"></script>
+    <div id="darkness"></div>
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+@media print {
+    /* здесь будут стили для печати */
+    textarea {
+        width: 100%;
+        height: 500px;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    nav {
+        display: none;
+    }
+}
